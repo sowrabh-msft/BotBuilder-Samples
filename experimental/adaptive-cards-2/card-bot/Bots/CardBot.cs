@@ -10,11 +10,23 @@ using AdaptiveCards;
 using Microsoft.Bot.AdaptiveCards;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
+using Newtonsoft.Json;
 
 namespace Microsoft.BotBuilderSamples.Bots
 {
     public class CardBot : ActivityHandler
     {
+        protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
+        {
+            var adaptiveCardAttachment = new Attachment()
+            {
+                ContentType = "application/vnd.microsoft.card.adaptive",
+                Content = new CardResource(Path.Combine(".", "Cards", "CardOne.json")).AsJObject(),
+            };
+
+            await turnContext.SendActivityAsync(MessageFactory.Attachment(adaptiveCardAttachment, "Hello " + turnContext.Activity.From.Name + "!"), cancellationToken);
+        }
+
         protected override async Task<InvokeResponse> OnInvokeActivityAsync(ITurnContext<IInvokeActivity> turnContext, CancellationToken cancellationToken)
         {
             if (AdaptiveCardInvokeValidator.IsAdaptiveCardAction(turnContext))
