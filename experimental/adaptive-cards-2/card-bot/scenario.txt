@@ -1,0 +1,9 @@
+﻿A card is sent to both Teams and Outlook which has textblock 
+"Hello, please write a message.", Input.Text field and an Action.Execute button "Send"
+
+User inputs text, say "Hello World" and presses "Send"
+
+On pressing "Send" the card is replaced with a new card which has a text block which has the user's message, 
+in this case "Hello World" and an Action.Execute button "Try again"
+
+Switching to Outlook, the card is shown synced and has the same message that user posted, in this case "Hello World"

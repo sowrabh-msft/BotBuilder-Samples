@@ -1,21 +1,40 @@
 {
   "type": "AdaptiveCard",
+  "refresh": {
+    "userIds": "${userId}",
+    "action": {
+      "type": "Action.Execute",
+      "verb": "refresh",
+      "title": "Refresh",
+      "data": {
+        "cardId": "${cardId}"
+      }
+    }
+  },
   "body": [
     {
       "type": "TextBlock",
-      "text": "Hello!",
-      "size": "Large",
-      "color": "Accent"
+      "text": "Hello, please write a message.",
+      "wrap": true,
+      "size": "Large"
+    },
+    {
+      "type": "Input.Text",
+      "placeholder": "",
+      "spacing": "Medium",
+      "id": "text"
     },
     {
       "type": "ActionSet",
       "actions": [
         {
           "type": "Action.Execute",
-          "title": "Click Me!",
-          "verb": "click",
+          "title": "Send",
+          "verb": "send",
           "data": {
-          }
+            "cardId": "${cardId}"
+          },
+          "style": "positive"
         }
       ]
     }

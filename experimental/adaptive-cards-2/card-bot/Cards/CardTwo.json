@@ -1,9 +1,20 @@
 {
   "type": "AdaptiveCard",
+  "refresh": {
+    "userIds": "${userId}",
+    "action": {
+      "type": "Action.Execute",
+      "verb": "refresh",
+      "title": "Refresh",
+      "data": {
+        "cardId": "${cardId}"
+      }
+    }
+  },
   "body": [
     {
       "type": "TextBlock",
-      "text": "You clicked the button!",
+      "text": "${text}",
       "size": "Large",
       "color": "Accent"
     },
@@ -12,10 +23,11 @@
       "actions": [
         {
           "type": "Action.Execute",
-          "title": "Go Back!",
-          "verb": "back",
+          "title": "Test Again!",
+          "verb": "testAgain",
           "data": {
-          }
+          },
+          "style": "positive"
         }
       ]
     }
